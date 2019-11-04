@@ -1,9 +1,11 @@
 package transformer_test
 
 import (
+	"fmt"
 	"log"
 	"testing"
 
+	"github.com/TobiEiss/csvtranslator/pkg/reader"
 	"github.com/TobiEiss/csvtranslator/pkg/transformer"
 )
 
@@ -37,4 +39,23 @@ func TestPerrow(t *testing.T) {
 			}
 		}
 	}
+}
+
+func TestWithFiles(t *testing.T) {
+	// read source
+	sourceCSV, err := reader.ReadCsv("../../testfiles/source1.csv", ";")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// read template
+	templateCSV, err := reader.ReadCsv("../../testfiles/template1.csv", ";")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// transform
+	result := transformer.TransformPerRow(sourceCSV, templateCSV)
+
+	fmt.Println(result)
 }

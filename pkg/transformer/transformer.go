@@ -1,7 +1,6 @@
 package transformer
 
 import (
-	"log"
 	"strings"
 )
 
@@ -26,7 +25,6 @@ func TransformPerRow(source, template [][]string) [][]string {
 		// line by line of template
 		for templateLineIndex := 0; templateLineIndex < len(template); templateLineIndex++ {
 			// make a copy of this line
-			//line := template[templateLineIndex]
 			line := append([]string(nil), template[templateLineIndex]...)
 
 			// iterate all fields
@@ -39,7 +37,6 @@ func TransformPerRow(source, template [][]string) [][]string {
 			}
 
 			// append line to result
-			log.Println(line)
 			result = append(result, line)
 		}
 	}

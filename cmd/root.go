@@ -2,10 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 
-	"github.com/TobiEiss/csvtranslator/pkg/reader"
 	"github.com/spf13/cobra"
 )
 
@@ -28,18 +26,11 @@ func Execute() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-
-	sourceCSV, err := reader.ReadCsv(source, seperator)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	log.Println(sourceCSV)
 }
 
 func init() {
 	rootCmd.PersistentFlags().StringVarP(&source, "source", "s", "source.csv", "Source-file to transform")
-	rootCmd.PersistentFlags().StringVarP(&output, "output", "o", "output.csv", "output-file which is transformed")
-	rootCmd.PersistentFlags().StringVarP(&output, "template", "t", "template.csv", "template-file which should be applied")
+	rootCmd.PersistentFlags().StringVarP(&output, "output", "o", "", "output-file which is transformed")
+	rootCmd.PersistentFlags().StringVarP(&template, "template", "t", "template.csv", "template-file which should be applied")
 	rootCmd.PersistentFlags().StringVarP(&seperator, "seperator", "c", ";", "the seperator of your CSV")
 }
